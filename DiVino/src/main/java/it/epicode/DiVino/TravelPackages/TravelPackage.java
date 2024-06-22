@@ -1,6 +1,5 @@
 package it.epicode.DiVino.TravelPackages;
 
-
 import it.epicode.DiVino.Wineries.Winery;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -9,18 +8,24 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
+@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
+@Table(name = "travel_packages")
 public class TravelPackage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name = "winery_id", nullable = false)
+    private Winery winery;
+
+    @Column(name = "travel_date", nullable = false)
+    @Temporal(TemporalType.DATE)
     private Date travelDate;
 
-    @ManyToOne
-    @JoinColumn(name = "winery_id")
-    private Winery winery;
+    @Column(name = "price", nullable = false)
+    private double price;
 }
