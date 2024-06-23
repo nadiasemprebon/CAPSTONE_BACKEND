@@ -6,6 +6,9 @@ import java.util.Date;
 @Data
 public class TravelPackagesDTOResponse {
     private Long id;
-    private Date travelDate;
+    private Long wineryId;
+    private String travelPackageName;
+    private Date startDate;
+    private Date endDate;
     private double price;
 }

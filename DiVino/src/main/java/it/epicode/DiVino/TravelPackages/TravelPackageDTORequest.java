@@ -5,6 +5,9 @@ import java.util.Date;
 
 @Data
 public class TravelPackageDTORequest {
-    private Date travelDate;
+    private Long wineryId;
+    private String travelPackageName;
+    private Date startDate;
+    private Date endDate;
     private double price;
 }

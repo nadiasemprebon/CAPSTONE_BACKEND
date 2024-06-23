@@ -4,12 +4,16 @@ package it.epicode.DiVino.TravelPackages;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
+
 
 import java.util.List;
 @Service
+@Validated
 public class TravelPackageService {
-
+    @Autowired
     private TravelPackageRepository travelPackageRepository;
 
     public TravelPackagesDTOResponse findById(Long id) {
