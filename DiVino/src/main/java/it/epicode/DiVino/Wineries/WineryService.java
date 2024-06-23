@@ -18,7 +18,7 @@ public class WineryService {
     private WineryRepository wineryRepository;
 
     //GET PER ID
-    public WineryDTOResponse findByID(Long id) {
+    public WineryDTOResponse findById(Long id) {
         if(!wineryRepository.existsById(id)) {
             throw new EntityNotFoundException("Winery non trovata");
         }

@@ -28,7 +28,7 @@ public class TravelPackageService {
 
     //POST
     @Transactional
-    public TravelPackagesDTOResponse create(TravelPackagesDTOResponse travelPackageDTORequest) {
+    public TravelPackagesDTOResponse create(TravelPackageDTORequest travelPackageDTORequest) {
         TravelPackage entity = new TravelPackage();
         BeanUtils.copyProperties(travelPackageDTORequest, entity);
         TravelPackagesDTOResponse travelPackagesDTOResponse = new TravelPackagesDTOResponse();
