@@ -4,9 +4,10 @@ package it.epicode.DiVino.TravelPackages;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.BeanUtils;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class TravelPackageService {
 
     private TravelPackageRepository travelPackageRepository;

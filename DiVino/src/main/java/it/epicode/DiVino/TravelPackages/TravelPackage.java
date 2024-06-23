@@ -18,17 +18,25 @@ public class TravelPackage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
     @ManyToOne
     @JoinColumn(name = "winery_id", nullable = false)
     private Winery winery;
+
+
+    @Column(name = "travel_package_name", length = 100, nullable = false)
+    private String travelPackageName;
+
 
     @Column(name = "start_date", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date startDate;
 
+
     @Column(name = "end_date", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date endDate;
+
 
     @Column(name = "price", nullable = false)
     private double price;
