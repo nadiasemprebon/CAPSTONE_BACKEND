@@ -1,6 +1,7 @@
 package it.epicode.DiVino.Users;
 
-import it.epicode.DiVino.Exceptions.EntityNotFoundException;
+
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;

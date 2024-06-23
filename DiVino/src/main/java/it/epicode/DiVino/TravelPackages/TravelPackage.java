@@ -22,9 +22,13 @@ public class TravelPackage {
     @JoinColumn(name = "winery_id", nullable = false)
     private Winery winery;
 
-    @Column(name = "travel_date", nullable = false)
+    @Column(name = "start_date", nullable = false)
     @Temporal(TemporalType.DATE)
-    private Date travelDate;
+    private Date startDate;
+
+    @Column(name = "end_date", nullable = false)
+    @Temporal(TemporalType.DATE)
+    private Date endDate;
 
     @Column(name = "price", nullable = false)
     private double price;

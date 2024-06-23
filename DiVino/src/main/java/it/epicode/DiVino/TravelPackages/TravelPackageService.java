@@ -1,10 +1,7 @@
 package it.epicode.DiVino.TravelPackages;
 
-import it.epicode.DiVino.Exceptions.EntityNotFoundException;
-import it.epicode.DiVino.Users.User;
-import it.epicode.DiVino.Users.UserDTORequest;
-import it.epicode.DiVino.Users.UserDTOResponse;
-import it.epicode.DiVino.Users.UserResponsePrj;
+
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.BeanUtils;
 
