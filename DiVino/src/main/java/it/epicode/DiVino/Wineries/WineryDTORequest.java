@@ -11,6 +11,6 @@ public class WineryDTORequest {
     private String location;
     private String description;
     private String tastingExperience;
-    private String imageUrl;
+    //private String imageUrl;
     private List<TravelPackageDTORequest> travelPackages;
 }

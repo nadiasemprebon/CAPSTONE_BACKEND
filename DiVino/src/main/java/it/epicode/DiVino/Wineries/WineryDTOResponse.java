@@ -11,6 +11,6 @@ public class WineryDTOResponse {
     private String location;
     private String description;
     private String tastingExperience;
-    private String imageUrl;
+    //private String imageUrl;
     private List<TravelPackagesDTOResponse> travelPackages;
 }

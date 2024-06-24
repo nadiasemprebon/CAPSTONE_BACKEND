@@ -32,8 +32,8 @@ public class Winery {
     @Column(name = "tasting_experience", length = 500, nullable = false)
     private String tastingExperience;
 
-    @Column(name = "image_url", nullable = true)
-    private String imageUrl;
+    //@Column(name = "image_url", nullable = true)
+    //private String imageUrl;
 
     //@ManyToOne
     //@JoinColumn(name = "admin_id", nullable = false)

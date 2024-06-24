@@ -8,6 +8,7 @@ public class TravelPackagesDTOResponse {
     private Long id;
     private Long wineryId;
     private String travelPackageName;
+    private String imageUrl;
     private Date startDate;
     private Date endDate;
     private double price;

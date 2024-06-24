@@ -28,6 +28,12 @@ public class TravelPackage {
     private String travelPackageName;
 
 
+
+    @Column(name = "image_url", nullable = true)
+    private String imageUrl;
+
+
+
     @Column(name = "start_date", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date startDate;

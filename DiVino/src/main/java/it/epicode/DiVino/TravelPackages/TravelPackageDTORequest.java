@@ -7,6 +7,7 @@ import java.util.Date;
 public class TravelPackageDTORequest {
     private Long wineryId;
     private String travelPackageName;
+    private String imageUrl;
     private Date startDate;
     private Date endDate;
     private double price;
