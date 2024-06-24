@@ -1,4 +1,4 @@
-package it.epicode.DiVino.Security;
+package it.epicode.DiVino.Exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.ObjectError;

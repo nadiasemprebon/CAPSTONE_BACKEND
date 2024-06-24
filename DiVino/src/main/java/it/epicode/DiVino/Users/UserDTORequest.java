@@ -9,6 +9,7 @@ import lombok.Data;
         private String password;
         private String firstName;
         private String lastName;
+        private String email;
         private Role role;
     }
 

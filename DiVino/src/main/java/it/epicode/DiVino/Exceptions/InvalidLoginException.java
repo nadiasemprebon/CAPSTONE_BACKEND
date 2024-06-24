@@ -1,4 +1,4 @@
-package it.epicode.DiVino.Security;
+package it.epicode.DiVino.Exceptions;
 
 import java.io.Serial;
 

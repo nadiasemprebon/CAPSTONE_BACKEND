@@ -31,6 +31,9 @@ public class User {
     @Column(length = 50, nullable = false)
     private String lastName;
 
+    @Column(length = 100, nullable = false)
+    private String email;
+
     @Enumerated(EnumType.STRING)
     @Column(length = 20, nullable = false)
     private Role role;
