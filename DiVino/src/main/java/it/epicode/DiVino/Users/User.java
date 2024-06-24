@@ -35,6 +35,6 @@ public class User {
     @Column(length = 20, nullable = false)
     private Role role;
 
-    @OneToMany(mappedBy = "admin", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Winery> wineries;
+    //@OneToMany(mappedBy = "admin", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    //private List<Winery> wineries;
 }

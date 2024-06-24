@@ -8,6 +8,7 @@ import java.util.List;
 public class WineryDTOResponse {
     private Long id;
     private String wineryName;
+    private String location;
     private String description;
     private String tastingExperience;
     private String imageUrl;

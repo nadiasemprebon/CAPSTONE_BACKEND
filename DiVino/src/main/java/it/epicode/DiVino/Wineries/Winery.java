@@ -32,12 +32,12 @@ public class Winery {
     @Column(name = "tasting_experience", length = 500, nullable = false)
     private String tastingExperience;
 
-    @Column(name = "image_url", length = 255, nullable = true)
+    @Column(name = "image_url", nullable = true)
     private String imageUrl;
 
-    @ManyToOne
-    @JoinColumn(name = "admin_id", nullable = false)
-    private User admin;
+    //@ManyToOne
+    //@JoinColumn(name = "admin_id", nullable = false)
+    //private User admin;
 
     @OneToMany(mappedBy = "winery", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<TravelPackage> travelPackages;

@@ -11,3 +11,4 @@ public class TravelPackageDTORequest {
     private Date endDate;
     private double price;
 }
+
