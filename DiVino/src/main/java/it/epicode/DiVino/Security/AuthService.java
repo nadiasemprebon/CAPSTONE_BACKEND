@@ -2,8 +2,10 @@ package it.epicode.DiVino.Security;
 
 
 
+import it.epicode.DiVino.Enums.Role;
 import it.epicode.DiVino.Users.User;
 import it.epicode.DiVino.Users.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -14,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
+@Slf4j
 public class AuthService {
 
     @Autowired
@@ -28,11 +31,17 @@ public class AuthService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+
+
     public String login(LoginModel loginModel) {
+        log.info("Attempting to authenticate user: {}", loginModel.userName());
         Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(loginModel.username(), loginModel.password()));
+                new UsernamePasswordAuthenticationToken(loginModel.userName(), loginModel.password()));
+        log.info("Authentication successful for user: {}", loginModel.userName());
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        return jwtUtils.generateToken(authentication);
+        String token = jwtUtils.generateToken(authentication);
+        log.info("Generated JWT token for user: {}", loginModel.userName());
+        return token;
     }
 
     public RegisteredUserDTO register(RegisterUserDTO registerUserDTO) {
@@ -46,7 +55,7 @@ public class AuthService {
         user.setFirstName(registerUserDTO.getFirstName());
         user.setLastName(registerUserDTO.getLastName());
         user.setEmail(registerUserDTO.getUserName());
-
+        user.setRole(Role.valueOf("USER"));
 
 
         userRepository.save(user);

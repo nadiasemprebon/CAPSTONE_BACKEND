@@ -12,7 +12,7 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
+
 @Table(name="users")
 public class User {
     @Id
@@ -40,4 +40,13 @@ public class User {
 
     //@OneToMany(mappedBy = "admin", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     //private List<Winery> wineries;
+
+    public User(String username,  String password, String firstName,  String lastName,String email, Role role) {
+        this.userName = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.role = role;
+    }
 }

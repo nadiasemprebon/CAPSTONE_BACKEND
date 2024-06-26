@@ -1,9 +1,9 @@
 package it.epicode.DiVino.Security;
 
+import it.epicode.DiVino.Enums.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-
 
 @Data
 @AllArgsConstructor
