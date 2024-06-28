@@ -9,14 +9,17 @@ import org.springframework.web.filter.CorsFilter;
 @Configuration
 public class CorsConfig {
 
-    //PERSONALIZZIAMO IL CORSFILTER SECONDO LE NOSTRE ESIGENZE
     @Bean
     public CorsFilter corsFilter() {
         CorsConfiguration configuration = new CorsConfiguration();
-        //UNA VOLTA DEPLOYATO IL FRONTEND BISOGNA AGGIUNGERE L'ORIGIN DOVE E STATO FATTO IL DEPLOY
+        // Una volta deployato il frontend bisogna aggiungere l'origin dove è stato fatto il deploy
         configuration.addAllowedOrigin("http://localhost:4200");
-        configuration.addAllowedMethod("");
-        configuration.addAllowedHeader("");
+        configuration.addAllowedMethod("GET");
+        configuration.addAllowedMethod("POST");
+        configuration.addAllowedMethod("PUT");
+        configuration.addAllowedMethod("DELETE");
+        configuration.addAllowedMethod("OPTIONS");
+        configuration.addAllowedHeader("*");
         configuration.setAllowCredentials(true);
 
         // Setta i permessi per le richieste preflight (OPTIONS)

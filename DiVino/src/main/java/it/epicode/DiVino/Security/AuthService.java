@@ -60,11 +60,11 @@ public class AuthService {
 
         userRepository.save(user);
 
-        return new RegisteredUserDTO(user.getUserName());
+        return new RegisteredUserDTO(user.getId(), user.getUserName(), user.getFirstName(), user.getLastName(),user.getEmail());
     }
 
     public RegisteredUserDTO getUserDetails(String username) {
         User user = userRepository.findOneByUserName(username).orElseThrow(() -> new UsernameNotFoundException("User not found"));
-        return new RegisteredUserDTO(user.getUserName());
+        return new RegisteredUserDTO(user.getId(), user.getUserName(), user.getFirstName(), user.getLastName(),user.getEmail());
     }
 }

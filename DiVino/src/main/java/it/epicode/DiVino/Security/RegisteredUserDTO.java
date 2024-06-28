@@ -26,7 +26,5 @@ public class RegisteredUserDTO {
 
     }
 
-    public RegisteredUserDTO(String userName) {
-        this.username = userName;
+
     }
-}

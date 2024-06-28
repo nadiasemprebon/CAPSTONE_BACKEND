@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 
 @RequestMapping("/auth")
+@CrossOrigin(origins = "http://localhost:4200")
 @Slf4j
 public class AuthController {
 
@@ -16,6 +17,7 @@ public class AuthController {
     private AuthService authService;
 
     @PostMapping("/login")
+
     public ResponseEntity<?> login(@RequestBody LoginModel loginModel) {
         log.info("Received login request with username: {}", loginModel.userName());
         log.info("Received login request with password: {}", loginModel.password());
