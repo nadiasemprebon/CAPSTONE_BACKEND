@@ -32,12 +32,15 @@ public class WineryService {
     public WineryDTOResponse create(WineryDTORequest wineryDTORequest) {
         Winery entity = new Winery();
         BeanUtils.copyProperties(wineryDTORequest, entity);
+
+        // Salva l'entità nel repository per ottenere l'ID generato
+        entity = wineryRepository.save(entity);
+
+        // Dopo il salvataggio, copia le proprietà dall'entità al DTO di risposta
         WineryDTOResponse wineryDTOResponse = new WineryDTOResponse();
         BeanUtils.copyProperties(entity, wineryDTOResponse);
-        wineryRepository.save(entity);
+
         return wineryDTOResponse;
-
-
     }
 
     //PUT

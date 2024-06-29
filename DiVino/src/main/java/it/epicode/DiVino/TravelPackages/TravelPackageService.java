@@ -36,17 +36,27 @@ public class TravelPackageService {
         TravelPackage entity = new TravelPackage();
         BeanUtils.copyProperties(travelPackageDTORequest, entity);
 
-        // Imposta il winery
+        // Recupera l'entità Winery dal repository utilizzando wineryId
         Winery winery = wineryRepository.findById(travelPackageDTORequest.getWineryId())
                 .orElseThrow(() -> new EntityNotFoundException("Winery non trovato"));
+
+        // Imposta l'entità Winery sull'entità TravelPackage
         entity.setWinery(winery);
 
+        // Salva l'entità TravelPackage nel repository
         travelPackageRepository.save(entity);
 
+        // Crea la risposta da restituire
         TravelPackagesDTOResponse travelPackagesDTOResponse = new TravelPackagesDTOResponse();
         BeanUtils.copyProperties(entity, travelPackagesDTOResponse);
+
+        // Assegna l'id della cantina a wineryId nella risposta
+        travelPackagesDTOResponse.setWineryId(winery.getId());
+
         return travelPackagesDTOResponse;
     }
+
+
 
     // PUT
     public TravelPackagesDTOResponse modify(Long id, TravelPackageDTORequest travelPackageDTORequest) {

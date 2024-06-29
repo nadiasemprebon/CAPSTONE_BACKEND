@@ -29,8 +29,8 @@ public class TravelPackage {
 
 
 
-    @Column(name = "image_url", nullable = true)
-    private String imageUrl;
+   // @Column(name = "image_url", nullable = true)
+    //private String imageUrl;
 
 
 

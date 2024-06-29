@@ -35,9 +35,7 @@ public class Winery {
     //@Column(name = "image_url", nullable = true)
     //private String imageUrl;
 
-    //@ManyToOne
-    //@JoinColumn(name = "admin_id", nullable = false)
-    //private User admin;
+
 
     @OneToMany(mappedBy = "winery", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<TravelPackage> travelPackages;

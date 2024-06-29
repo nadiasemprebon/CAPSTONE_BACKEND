@@ -59,26 +59,26 @@ public class ApplicationSecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(AbstractHttpConfigurer::disable)
-                .cors(Customizer.withDefaults()) // Utilizza la configurazione CORS
-                .authorizeHttpRequests(authorize ->
-                                authorize //CONFIGURAZIONE DELLA PROTEZIONE DEI VARI ENDPOINT
-                                        .requestMatchers("/auth/login").permitAll()
-                                        .requestMatchers("/auth/register").permitAll() // DA CANCELLARE DOPO AVER CREATO L'ADMIN
-                                        .requestMatchers(HttpMethod.POST, "/users").permitAll() //ENDPOINT DI REGISTRAZIONE APERTO A TUTTI
-                                        .requestMatchers(HttpMethod.GET, "/**").authenticated() //TUTTE GLI ENDPOINTS DI TIPO GET SONO RICHIAMABILI SOLO SE L'UTENTE E AUTENTICATO
-                                        .requestMatchers(HttpMethod.POST, "/**").hasAuthority("ADMIN") //TUTTE LE POST POSSONO ESSERE FATTE SOLO DALL'ADMIN
-                                        .requestMatchers(HttpMethod.PATCH, "/users/{id}").authenticated() //SOLO UN UTENTE AUTENTICATO PUO MODIFICARE I SUOI DATI
-                                        .requestMatchers(HttpMethod.PUT, "/**").hasAuthority("ADMIN") //TUTTE LE PUT POSSONO ESSERE FATTE SOLO DALL'ADMIN
-                                        .requestMatchers(HttpMethod.DELETE, "/**").hasAuthority("ADMIN") //TUTTE LE DELETE POSSONO ESSERE FATTE SOLO DALL'ADMIN
-                        //.requestMatchers("/**").authenticated() //TUTTO CIO CHE PUO ESSERE SFUGGITO RICHIEDE L'AUTENTICAZIONE (SERVE A GESTIRE EVENTUALI DIMENTICANZE)
+                .csrf(csrf -> csrf.disable())
+                .cors(Customizer.withDefaults())
+                .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers("/auth/login").permitAll()
+                        .requestMatchers("/auth/register").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/users").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/api/wineries").authenticated()// <-- Modifica qui
+                        .requestMatchers(HttpMethod.POST, "/api/travel_packages").authenticated()
+                        //.requestMatchers(HttpMethod.POST, "/").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.PATCH, "/users/{id}").authenticated()
+                        .requestMatchers(HttpMethod.PUT, "/").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/").hasAuthority("ADMIN")
                 )
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                //COMUNICA ALLA FILTERCHAIN QUALE FILTRO UTILIZZARE, SENZA QUESTA RIGA DI CODICE IL FILTRO NON VIENE RICHIAMATO
                 .addFilterBefore(authenticationJwtToken(), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
+
     }
 
     @Bean
