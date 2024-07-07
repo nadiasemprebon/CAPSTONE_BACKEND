@@ -66,8 +66,8 @@ public class ApplicationSecurityConfig {
                         .requestMatchers("/auth/register").permitAll()
                         .requestMatchers(HttpMethod.POST, "/users").permitAll()
                         .requestMatchers(HttpMethod.GET, "/").authenticated()
-                        .requestMatchers(HttpMethod.POST, "/api/wineries").authenticated()// <-- Modifica qui
-                        .requestMatchers(HttpMethod.POST, "/api/travel_packages").authenticated()
+                        .requestMatchers("/api/wineries").permitAll()// <-- Modifica qui
+                        .requestMatchers( "/api/travel_packages").permitAll()
                         //.requestMatchers(HttpMethod.POST, "/").hasAuthority("ADMIN")
                         .requestMatchers(HttpMethod.PATCH, "/users/{id}").authenticated()
                         .requestMatchers(HttpMethod.PUT, "/").hasAuthority("ADMIN")
