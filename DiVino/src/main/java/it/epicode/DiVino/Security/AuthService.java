@@ -2,9 +2,11 @@ package it.epicode.DiVino.Security;
 
 
 
+import it.epicode.DiVino.Email.EmailService;
 import it.epicode.DiVino.Enums.Role;
 import it.epicode.DiVino.Users.User;
 import it.epicode.DiVino.Users.UserRepository;
+import jakarta.persistence.EntityExistsException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -31,6 +33,9 @@ public class AuthService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private EmailService emailService;
+
 
 
     public String login(LoginModel loginModel) {
@@ -48,17 +53,22 @@ public class AuthService {
         if (userRepository.existsByUserName(registerUserDTO.getUserName())) {
             throw new RuntimeException("Username is already taken!");
         }
+        if(userRepository.existsByEmail(registerUserDTO.getEmail())){
+            throw new EntityExistsException("Email gia registrata");
+        }
 
         User user = new User();
         user.setUserName(registerUserDTO.getUserName());
         user.setPassword(passwordEncoder.encode(registerUserDTO.getPassword()));
         user.setFirstName(registerUserDTO.getFirstName());
         user.setLastName(registerUserDTO.getLastName());
-        user.setEmail(registerUserDTO.getUserName());
+        user.setEmail(registerUserDTO.getEmail());
         user.setRole(Role.valueOf("USER"));
 
 
         userRepository.save(user);
+
+        emailService.sendWelcomeEmail(user.getEmail());
 
         return new RegisteredUserDTO(user.getId(), user.getUserName(), user.getFirstName(), user.getLastName(),user.getEmail());
     }
