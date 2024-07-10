@@ -62,17 +62,23 @@ public class ApplicationSecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/auth/login").permitAll()
-                        .requestMatchers("/auth/register").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/users").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/").authenticated()
-                        .requestMatchers("/api/wineries").permitAll()// <-- Modifica qui
-                        .requestMatchers( "/api/travel_packages").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/travel_packages").permitAll()
-                        //.requestMatchers(HttpMethod.POST, "/").hasAuthority("ADMIN")
-                        .requestMatchers(HttpMethod.PATCH, "/users/{id}").authenticated()
-                        .requestMatchers(HttpMethod.PUT, "/").hasAuthority("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/").hasAuthority("ADMIN")
+                        .requestMatchers("/auth/login").permitAll() //autorizza tutti a loggarsi
+                        .requestMatchers("/auth/register").permitAll()//autorizza tutti a registrarsi
+
+
+
+                        .requestMatchers(HttpMethod.POST, "/users").permitAll()//permette a tutti di creare un nuovo utente
+                        .requestMatchers(HttpMethod.GET, "/").permitAll()//permette a tutti di visualizzare la pagina home
+
+
+                        .requestMatchers("/api/wineries").permitAll()// solo chi é registrato e loggato puo accedere al form di creazione cantina
+                        .requestMatchers("/api/travel_packages").permitAll()// solo chi é registrato e loggato puo accedere al form di creazione pacchetto viaggio
+                        .requestMatchers(HttpMethod.DELETE, "/api/travel_packages/**").permitAll()
+
+
+
+
+
                 )
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

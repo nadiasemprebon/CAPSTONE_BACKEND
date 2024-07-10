@@ -121,12 +121,11 @@ public class TravelPackageService {
     }
 
     // DELETE
-    public String delete(Long id) {
+    public void delete(Long id) {
         if (!travelPackageRepository.existsById(id)) {
             throw new EntityNotFoundException("TravelPackage non trovato");
         }
         travelPackageRepository.deleteById(id);
-        return "TravelPackage eliminato";
     }
 
     // GET ALL
