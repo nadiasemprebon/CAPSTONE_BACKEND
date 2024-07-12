@@ -74,7 +74,7 @@ public class ApplicationSecurityConfig {
                         .requestMatchers("/api/wineries").permitAll()// solo chi é registrato e loggato puo accedere al form di creazione cantina
                         .requestMatchers("/api/travel_packages").permitAll()// solo chi é registrato e loggato puo accedere al form di creazione pacchetto viaggio
                         .requestMatchers(HttpMethod.DELETE, "/api/travel_packages/**").permitAll()
-
+                        .requestMatchers(HttpMethod.PUT, "/api/travel_packages/**").permitAll()
 
 
 
