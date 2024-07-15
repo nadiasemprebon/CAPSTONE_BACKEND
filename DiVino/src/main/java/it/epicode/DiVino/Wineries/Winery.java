@@ -1,6 +1,8 @@
 package it.epicode.DiVino.Wineries;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import it.epicode.DiVino.TravelPackages.TravelPackage;
 import it.epicode.DiVino.Users.User;
 import jakarta.persistence.*;
@@ -38,5 +40,6 @@ public class Winery {
 
 
     @OneToMany(mappedBy = "winery", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonBackReference
     private List<TravelPackage> travelPackages;
 }

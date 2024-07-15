@@ -3,6 +3,7 @@ package it.epicode.DiVino.TravelPackages;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import it.epicode.DiVino.Wineries.Winery;
+import it.epicode.DiVino.Wineries.WineryDTOResponse;
 import it.epicode.DiVino.Wineries.WineryRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
@@ -39,6 +40,12 @@ public class TravelPackageService {
         TravelPackage entity = travelPackageRepository.findById(id).get();
         TravelPackagesDTOResponse travelPackagesDTOResponse = new TravelPackagesDTOResponse();
         BeanUtils.copyProperties(entity, travelPackagesDTOResponse);
+
+        // Create and set WineryDTOResponse
+        WineryDTOResponse wineryDTOResponse = new WineryDTOResponse();
+        BeanUtils.copyProperties(entity.getWinery(), wineryDTOResponse);
+        travelPackagesDTOResponse.setWineryId(wineryDTOResponse);
+
         return travelPackagesDTOResponse;
     }
 
@@ -78,8 +85,10 @@ public class TravelPackageService {
         TravelPackagesDTOResponse travelPackagesDTOResponse = new TravelPackagesDTOResponse();
         BeanUtils.copyProperties(entity, travelPackagesDTOResponse);
 
-        // Assegna l'id della cantina a wineryId nella risposta
-        travelPackagesDTOResponse.setWineryId(winery.getId());
+        // Create and set WineryDTOResponse
+        WineryDTOResponse wineryDTOResponse = new WineryDTOResponse();
+        BeanUtils.copyProperties(winery, wineryDTOResponse);
+        travelPackagesDTOResponse.setWineryId(wineryDTOResponse);
 
         return travelPackagesDTOResponse;
     }
@@ -117,6 +126,12 @@ public class TravelPackageService {
 
         TravelPackagesDTOResponse travelPackageDTOResponse = new TravelPackagesDTOResponse();
         BeanUtils.copyProperties(entity, travelPackageDTOResponse);
+
+        // Create and set WineryDTOResponse
+        WineryDTOResponse wineryDTOResponse = new WineryDTOResponse();
+        BeanUtils.copyProperties(winery, wineryDTOResponse);
+        travelPackageDTOResponse.setWineryId(wineryDTOResponse);
+
         return travelPackageDTOResponse;
     }
 

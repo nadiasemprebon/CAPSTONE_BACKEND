@@ -71,5 +71,5 @@ public class TravelPackageController {
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         service.delete(id);
         return ResponseEntity.noContent().build(); // Restituisce 204 No Content
-    }}
-
+    }
+}

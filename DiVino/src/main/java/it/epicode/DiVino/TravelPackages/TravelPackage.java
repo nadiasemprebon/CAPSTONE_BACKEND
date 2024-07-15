@@ -1,5 +1,6 @@
 package it.epicode.DiVino.TravelPackages;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import it.epicode.DiVino.Wineries.Winery;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -21,6 +22,7 @@ public class TravelPackage {
 
     @ManyToOne
     @JoinColumn(name = "winery_id", nullable = false)
+    @JsonManagedReference
     private Winery winery;
 
 
